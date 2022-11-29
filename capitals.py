@@ -1,3 +1,6 @@
+# random is a function that chooeses a random element from an object for you in python
+import random
+
 states = [
 {
     "name": "Alabama",
@@ -150,3 +153,32 @@ states = [
     "name": "Wyoming",
     "capital": "Cheyenne"
 }]
+
+print ("Learn the Capital of every State!\n")
+
+for state in states:
+    state['right'] = 0
+    state['wrong'] = 0
+
+while len(states) > 0:
+    random.shuffle(states)
+    for state in states:
+            guess=input(f"\nWhat is the capital of {state['name']}?\n").lower()
+            if guess == state['capital'].lower():
+                if state['correct']:
+                    state['correct'] += 1
+                else:
+                    state['correct'] = 1
+                print(f"Correct! only {len(state)} left!")
+                states.pop(state)
+            else:
+                if state['incorrect']:
+                    state['incorrect'] += 1
+                else:
+                    state['incorrect'] = 1
+                print(f"Better luck next time! only {len(states)} left!")
+                states.pop(state)
+            
+            print (f"You got {state['correct']} questions correct, and {state['incorrect']} wrong.")
+print("Thanks for playing")
+
